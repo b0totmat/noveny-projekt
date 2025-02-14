@@ -3,15 +3,14 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 
 import { sequelize } from './models.js'
+import { plantRouter } from './routes/plants.js'
 
 const app = express()
 
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+app.use('/plants', plantRouter)
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(3000)

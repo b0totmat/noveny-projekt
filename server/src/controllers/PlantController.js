@@ -1,4 +1,4 @@
-import { Plant } from "../models"
+import { Plant } from "../models.js"
 
 async function getPlants(req, res) {
     try {
@@ -20,13 +20,13 @@ async function insertPlant(req, res) {
 
 async function updatePlant(req, res) {
     try {
-        const plant = Plant.findByPk(req.params.id)
+        const plant = await Plant.findByPk(req.params.id)
 
         if(!plant) {
             res.status(404).json({message: 'Nem található növény.'})
         }
 
-        plant.update(req.body)
+        await plant.update(req.body)
         res.status(200).json({message: 'Sikeresen módosította a növényt.'})
     } catch(e) {
         res.status(500).json({message: 'Hiba a módosítás során.'})
@@ -35,13 +35,13 @@ async function updatePlant(req, res) {
 
 async function removePlant(req, res) {
     try {
-        const plant = Plant.findByPk(req.params.id)
+        const plant = await Plant.findByPk(req.params.id)
 
         if(!plant) {
             res.status(404).json({message: 'Nem található növény.'})
         }
 
-        plant.destroy()
+        await plant.destroy()
         res.status(204).json({message: 'Növény sikeresen törölve.'})
     } catch(e) {
         res.status(500).json({message: 'Nem tudtuk törölni a növényt.'})
