@@ -41,5 +41,5 @@ export const usePlantStore = defineStore('plants', () => {
     }
   }
 
-  return { loadPlants, newPlant, updatePlant, removePlant }
+  return { plants, loadPlants, newPlant, updatePlant, removePlant }
 })
