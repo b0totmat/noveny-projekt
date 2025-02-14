@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 
 import Navbar from './components/Navbar.vue'
@@ -13,7 +13,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <header>
+  <header class="mb-5">
     <Navbar />
   </header>
   <RouterView />
