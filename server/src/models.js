@@ -9,6 +9,11 @@ const sequelize = new Sequelize({
 })
 
 const Plant = sequelize.define('plants', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false
