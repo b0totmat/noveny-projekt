@@ -48,4 +48,4 @@ async function removePlant(req, res) {
     }
 }
 
-export { getPlants, insertPlant, updatePlant, removePlant }
+export default { getPlants, insertPlant, updatePlant, removePlant }
