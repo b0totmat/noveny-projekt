@@ -8,7 +8,7 @@ const plantStore = usePlantStore()
 const router = useRouter()
 
 function redirect(id) {
-    router.push(`/plants/${id}`)
+    router.push(`/modify-plant/${id}`)
 }
 
 onMounted(async () => {
