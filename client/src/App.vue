@@ -8,7 +8,7 @@ import { usePlantStore } from './stores/plants'
 const plantStore = usePlantStore()
 
 onMounted(async () => {
-  plantStore.loadPlants()
+  await plantStore.loadPlants()
 })
 </script>
 

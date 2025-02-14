@@ -12,7 +12,7 @@ function redirect(id) {
 }
 
 onMounted(async () => {
-  plantStore.loadPlants()
+  await plantStore.loadPlants()
 })
 </script>
 
