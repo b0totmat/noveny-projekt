@@ -21,11 +21,15 @@ onMounted(async () => {
     <div class="row gy-3">
       <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="p in plantStore.plants" :key="p.id">
         <div class="card">
+          <div class="card-header pb-1 pt-2">
+            <h4 class="card-title">{{ p.name }}</h4>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">{{ p.name }}</h5>
             <p class="card-text">Évelő-e: {{ p.isPerennial ? 'Igen' : 'Nem' }}</p>
             <p class="card-text">Kategória: {{ p.category }}</p>
             <p class="card-text">Ár: {{ p.price }} Ft</p>
+          </div>
+          <div class="card-footer bg-transparent d-grid gap-2">
             <button class="btn btn-outline-primary" @click="redirect(p.id)">Módosítás</button>
           </div>
         </div>
