@@ -29,8 +29,9 @@ onMounted(async () => {
             <p class="card-text">Kategória: {{ p.category }}</p>
             <p class="card-text">Ár: {{ p.price }} Ft</p>
           </div>
-          <div class="card-footer bg-transparent d-grid gap-2">
+          <div class="card-footer bg-transparent d-flex justify-content-evenly">
             <button class="btn btn-outline-primary" @click="redirect(p.id)">Módosítás</button>
+            <button class="btn btn-danger" @click="redirect(p.id)">Törlés</button>
           </div>
         </div>
       </div>
