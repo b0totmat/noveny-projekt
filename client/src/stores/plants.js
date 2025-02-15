@@ -42,7 +42,9 @@ export const usePlantStore = defineStore('plants', () => {
   }
 
   function findPlant(plantId) {
-    return plants.value.find(p => p.id === plantId)
+    const plant = plants.value.find(p => p.id == plantId)
+    console.log(plant)
+    return plant
   }
 
   return { plants, loadPlants, newPlant, updatePlant, removePlant, findPlant }

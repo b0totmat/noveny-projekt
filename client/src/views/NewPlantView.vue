@@ -13,10 +13,10 @@
             </div>
             <div class="form-check mb-2">
                 <label for="is-perennial-no" class="form-check-label">Nem évelő</label>
-                <input type="radio"id="is-perennial-no" :value="false" class="form-check-input" v-model="plant.isPerennial">
+                <input type="radio" id="is-perennial-no" :value="false" class="form-check-input" v-model="plant.isPerennial">
             </div>
             <div class="mb-2">
-                <select class="form-select" v-model="plant.type">
+                <select class="form-select" v-model="plant.category">
                     <option value="virág">Virág</option>
                     <option value="fa">Fa</option>
                     <option value="bokor">Bokor</option>
@@ -34,17 +34,16 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { usePlantStore } from '@/stores/plants'
 
-const plantStore = usePlantStore()
-const route = useRoute(),
+const plantStore = usePlantStore(),
       router = useRouter()
 
 const plant = ref({
     name: '',
     isPerennial: false,
-    type: 'virág',
+    category: 'virág',
     price: 1000
 })
 
