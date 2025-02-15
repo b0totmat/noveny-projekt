@@ -31,7 +31,7 @@ onMounted(async () => {
           </div>
           <div class="card-footer bg-transparent d-flex justify-content-evenly">
             <button class="btn btn-outline-primary" @click="redirect(p.id)">Módosítás</button>
-            <button class="btn btn-danger" @click="redirect(p.id)">Törlés</button>
+            <button class="btn btn-danger" @click="plantStore.removePlant(p.id)">Törlés</button>
           </div>
         </div>
       </div>
