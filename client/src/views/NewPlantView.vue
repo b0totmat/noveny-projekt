@@ -26,7 +26,7 @@
                 <input type="number" id="price" class="form-control" placeholder="2500" v-model="plant.price">
                 <label for="price" class="form-label">Ár</label>
             </div>
-            <button class="btn btn-success w-100" @click="newPlant">Hozzáadás</button>
+            <button class="btn btn-success w-100" @click="validateForm">Hozzáadás</button>
         </form>
       </div>
     </div>
@@ -46,9 +46,31 @@ const plant = ref({
     category: 'virág',
     price: 1000
 })
+const errors = ref([])
 
-async function newPlant(e) {
+async function validateForm(e) {
     e.preventDefault()
+    errors.value = []
+    let isValid = true
+
+    if(plant.value.name.length < 2) {
+        errors.value.push('A növény neve legalább 2 karakter hosszú kell legyen!')
+        isValid = false
+    }
+    if(typeof(plant.value.price) !== 'number') {
+        errors.value.push('Helytelen ár formátum!')
+        isValid = false
+    } else if(plant.value.price < 500) {
+        errors.value.push('Az ár nem lehet kevesebb, mint 500 Ft!')
+        isValid = false
+    }
+    
+    if(isValid && errors.value.length === 0) {
+        await newPlant()
+    }
+}
+
+async function newPlant() {
     
     await plantStore.newPlant(plant.value)
     router.push({ name: 'home' })
