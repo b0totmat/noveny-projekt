@@ -6,6 +6,9 @@
             <div class="form-floating mb-2">
                 <input type="text" class="form-control" id="plant-name" placeholder="Tulipán" v-model="plant.name">
                 <label for="plant-name" class="form-label">Növény neve</label>
+                <p class="bg-danger text-light p-2 mt-2 border border-dark rounded-pill opacity-75" v-if="errors.nameError">
+                    A növény neve legalább 2 karakter hosszú kell legyen!
+                </p>
             </div>
             <div class="form-check mb-2">
                 <label for="is-perennial-yes" class="form-check-label">Évelő</label>
@@ -25,6 +28,12 @@
             <div class="form-floating mb-3">
                 <input type="number" id="price" class="form-control" placeholder="2500" v-model="plant.price">
                 <label for="price" class="form-label">Ár</label>
+                <p class="bg-danger text-light p-2 mt-2 border border-dark rounded-pill opacity-75" v-if="errors.priceTypeError">
+                    Helytelen ár formátum!
+                </p>
+                <p class="bg-danger text-light p-2 mt-2 border border-dark rounded-pill opacity-75" v-if="errors.priceValueError">
+                    Az ár nem lehet kevesebb, mint 500 Ft!
+                </p>
             </div>
             <button class="btn btn-success w-100" @click="validateForm">Hozzáadás</button>
         </form>
@@ -46,7 +55,11 @@ const plant = ref({
     category: 'virág',
     price: 1000
 })
-const errors = ref([])
+const errors = ref({
+    nameError: false,
+    priceTypeError: false,
+    priceValueError: false
+})
 
 async function validateForm(e) {
     e.preventDefault()
@@ -54,18 +67,18 @@ async function validateForm(e) {
     let isValid = true
 
     if(plant.value.name.length < 2) {
-        errors.value.push('A növény neve legalább 2 karakter hosszú kell legyen!')
+        errors.value.nameError = true
         isValid = false
     }
     if(typeof(plant.value.price) !== 'number') {
-        errors.value.push('Helytelen ár formátum!')
+        errors.value.priceTypeError = true
         isValid = false
     } else if(plant.value.price < 500) {
-        errors.value.push('Az ár nem lehet kevesebb, mint 500 Ft!')
+        errors.value.priceValueError = true
         isValid = false
     }
     
-    if(isValid && errors.value.length === 0) {
+    if(isValid) {
         await newPlant()
     }
 }
